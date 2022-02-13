@@ -1,8 +1,10 @@
 ---
 layout: page
-title: Command and Setup Cheatsheet
+title: Cheatsheet
 permalink: /cheatsheet/
 ---
+
+Collection of commands and setup stuff that I use all of the time.
 
 # Linux
 
@@ -19,4 +21,15 @@ permalink: /cheatsheet/
 
 * `sudo apt install vim`
 * TODO: setting jk
+
+## GitHub
+
+* Create token.
+  * Settings.
+  * Developer settings
+  * Personal access tokens
+  * Generate new token, copy the output and save it off.
+* [Install GitHub CLI.](https://docs.github.com/en/get-started/getting-started-with-git/caching-your-github-credentials-in-git)
+  * `gh auth login`
+  * Use web method.
 
