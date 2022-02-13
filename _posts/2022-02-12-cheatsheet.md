@@ -1,3 +1,10 @@
+---
+toc: true
+layout: post
+description: Cheatsheet for commands and things I constantly look up.
+categories: [markdown]
+title: Common Command and Setup Cheatsheet
+---
 # Common Command and Setup Cheatsheet
 
 ## terminal shortcuts
