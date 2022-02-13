@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>FastAI Book Chapter 2 | Psi ML</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="FastAI Book Chapter 2" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A minimal example of using markdown with fastpages." />
+<meta property="og:description" content="A minimal example of using markdown with fastpages." />
+<link rel="canonical" href="http://simonstolarczyk.com/markdown/2020/07/11/fastai_book_ch2.html" />
+<meta property="og:url" content="http://simonstolarczyk.com/markdown/2020/07/11/fastai_book_ch2.html" />
+<meta property="og:site_name" content="Psi ML" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-07-11T00:00:00-05:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="FastAI Book Chapter 2" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2020-07-11T00:00:00-05:00","datePublished":"2020-07-11T00:00:00-05:00","description":"A minimal example of using markdown with fastpages.","headline":"FastAI Book Chapter 2","mainEntityOfPage":{"@type":"WebPage","@id":"http://simonstolarczyk.com/markdown/2020/07/11/fastai_book_ch2.html"},"url":"http://simonstolarczyk.com/markdown/2020/07/11/fastai_book_ch2.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="http://simonstolarczyk.com/feed.xml" title="Psi ML" /><link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.css" integrity="sha512-h7nl+xz8wgDlNM4NqKEM4F1NkIRS17M9+uJwIGwuo8vGqIl4BhuCKdxjWEINm+xyrUjNCnK5dCrhM0sj+wTIXw==" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.js" integrity="sha512-/CMIhXiDA3m2c9kzRyd97MTb3MC6OVnx4TElQ7fkkoRghwDf6gi41gaT1PwF270W6+J60uTmwgeRpNpJdRV6sg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/contrib/auto-render.min.js" integrity="sha512-Do7uJAaHZm5OLrIv/yN4w0iG1dbu01kzdMNnFfu/mAqgUk6Nniv2JYHcwH+cNwjqgLcqcuBBk+JRvprLVI8azg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha512-0doc9hKxR3PYwso42RD1p5ySZpzzuDiOwMrdCEh2WdJZCjcmFKc/wEnL+z8fBQrnHoiNWbo+3fiGkOYXBdQp4A==" crossorigin="anonymous"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement( document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "[%", right: "%]", display: true},
+            {left: "$", right: "$", display: false}
+        ]}
+        );
+    });
+    </script>
+
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Psi ML</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About Me</a><a class="page-link" href="/search/">Search</a><a class="page-link" href="/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">FastAI Book Chapter 2</h1><p class="page-description">A minimal example of using markdown with fastpages.</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2020-07-11T00:00:00-05:00" itemprop="datePublished">
+        Jul 11, 2020
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      3 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/categories/#markdown">markdown</a>
+        
+      
+      </p>
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul id="toc" class="section-nav">
+<li class="toc-entry toc-h1"><a href="#fastai-book-chapter-2">FastAI Book Chapter 2</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#things-i-learned">Things I Learned</a></li>
+<li class="toc-entry toc-h2"><a href="#things-i-had-to-troubleshoot">Things I Had to Troubleshoot</a></li>
+</ul>
+</li>
+</ul><h1 id="fastai-book-chapter-2">
+<a class="anchor" href="#fastai-book-chapter-2" aria-hidden="true"><span class="octicon octicon-link"></span></a>FastAI Book Chapter 2</h1>
+<p>I went through the second chapter of the book today, which is why this blog even exists.
+Highly useful; looking forward to working on some music projects to really learn the material.</p>
+
+<h2 id="things-i-learned">
+<a class="anchor" href="#things-i-learned" aria-hidden="true"><span class="octicon octicon-link"></span></a>Things I Learned</h2>
+<ul>
+  <li>How to easily build an image classifier to discern between blue jays, mockingbirds, and shrikes.</li>
+</ul>
+
+<p>I chose the first two bird types based on my familiarity and their Cool Local Bird ranks. I was going to select a cardinal as a third class, but thought it would be too easy to detect the class based solely on color, so I searched around and found shrikes, which looked similar to mockingbirds. The classifier performed very well, which was I semi-shock because I didn’t know:</p>
+
+<ul>
+  <li>You do not always need a lot of data to build a decent model.</li>
+</ul>
+
+<p>Even with 150 examples of each of three classes (before train/validation split), there were only 3 misclassifications on the validation set. This shows how powerful data augmentation can be, but also helps dispel the notion that you need tons of data to do anything reasonable.</p>
+
+<ul>
+  <li>FastAI has some powerful tools that I need to learn.</li>
+</ul>
+
+<ol>
+  <li>Easily display the examples with the highest loss and lowest confidence to see if I can interpret possible deficiencies with <code class="language-plaintext highlighter-rouge">interp.plot_top_losses()</code>.</li>
+  <li>Clean up the dataset with <code class="language-plaintext highlighter-rouge">ImageClassifierCleaner</code>, manually going through some of the examples to change labels or remove them, and then effect the changes with a couple simple for-loops.</li>
+  <li>Use <code class="language-plaintext highlighter-rouge">verify_images</code> to clean up corrupted files easily.</li>
+  <li>Use <code class="language-plaintext highlighter-rouge">DataBlock</code> to define the structure of the problem and implement useful transformations for the data.</li>
+</ol>
+
+<ul>
+  <li>Think about how to normalize images.</li>
+</ul>
+
+<p>Squashing a large image into a smaller one with simple scaling or adding cropped parts of small images is maybe not the best way to make sure the inputs are all “from the same distribution”. You can use <code class="language-plaintext highlighter-rouge">RandomResizedCrop</code> to maintain original image quality and also artificially expand the size of your training set.</p>
+
+<ul>
+  <li>Other things:
+    <ul>
+      <li>How to easily build a dataset with the Bing Image API.</li>
+      <li>The usefulness of Path (which I only recently learned about) was really demonstrated nicely.</li>
+      <li>The Drivetrain Approach.</li>
+      <li>Creating a Notebook App with widgets and Voilà. (Admittedly, I’m still trying to get the latter to work.)</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="things-i-had-to-troubleshoot">
+<a class="anchor" href="#things-i-had-to-troubleshoot" aria-hidden="true"><span class="octicon octicon-link"></span></a>Things I Had to Troubleshoot</h2>
+<ul>
+  <li>How do you find the Bing Image Search key?</li>
+</ul>
+
+<p>Solution: I signed up for the free Azure thing, went to to the <a href="https://azure.microsoft.com/en-us/services/cognitive-services/bing-image-search-api/">Bing Image Search API</a>, and just had to click to add Bing Search APIs v7 to my subscription. Once I did this it brought up a page with the keys and endpoints.</p>
+
+<ul>
+  <li>I am using my local computer, with Windows, to run the notebooks. So, I have run into (standard) issues. Namely, I saw <code class="language-plaintext highlighter-rouge">RuntimeError: cuda runtime error (801) : operation not supported at...</code> when I first attempted to fine tune the learner <code class="language-plaintext highlighter-rouge">learn.fine_tune(4)</code>.</li>
+</ul>
+
+<p>Solution: When you google the error <a href="https://github.com/fastai/fastbook/issues/85">this issue page</a> points you to the forum, but also usefully mentions the “need to set num_workers=0 when creating a DataLoaders because Pytorch multiprocessing does not work on Windows.” So, doing this when you define the dataloaders <code class="language-plaintext highlighter-rouge">dls = bears.dataloaders(path, num_workers=0)</code> cleared it up for me.</p>
+
+<ul>
+  <li>Some minor formatting issues with <code class="language-plaintext highlighter-rouge">interp.plot_top_losses(5, nrows=1)</code>. The text above the images was overlapping, because my class names were a bit long.</li>
+</ul>
+
+<p>Simple fix was to set <code class="language-plaintext highlighter-rouge">nrows=5</code>.</p>
+
+  </div><a class="u-url" href="/markdown/2020/07/11/fastai_book_ch2.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>Blog for music, ML, and cheatsheets.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/spstolar" target="_blank" title="spstolar"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/psistolar" target="_blank" title="psistolar"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

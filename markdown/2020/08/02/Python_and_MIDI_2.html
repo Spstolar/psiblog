@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Make More Interesting Random Music | Psi ML</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="Make More Interesting Random Music" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A minimal example of using markdown with fastpages." />
+<meta property="og:description" content="A minimal example of using markdown with fastpages." />
+<link rel="canonical" href="http://simonstolarczyk.com/markdown/2020/08/02/Python_and_MIDI_2.html" />
+<meta property="og:url" content="http://simonstolarczyk.com/markdown/2020/08/02/Python_and_MIDI_2.html" />
+<meta property="og:site_name" content="Psi ML" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-08-02T00:00:00-05:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Make More Interesting Random Music" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2020-08-02T00:00:00-05:00","datePublished":"2020-08-02T00:00:00-05:00","description":"A minimal example of using markdown with fastpages.","headline":"Make More Interesting Random Music","mainEntityOfPage":{"@type":"WebPage","@id":"http://simonstolarczyk.com/markdown/2020/08/02/Python_and_MIDI_2.html"},"url":"http://simonstolarczyk.com/markdown/2020/08/02/Python_and_MIDI_2.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="http://simonstolarczyk.com/feed.xml" title="Psi ML" /><link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.css" integrity="sha512-h7nl+xz8wgDlNM4NqKEM4F1NkIRS17M9+uJwIGwuo8vGqIl4BhuCKdxjWEINm+xyrUjNCnK5dCrhM0sj+wTIXw==" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.js" integrity="sha512-/CMIhXiDA3m2c9kzRyd97MTb3MC6OVnx4TElQ7fkkoRghwDf6gi41gaT1PwF270W6+J60uTmwgeRpNpJdRV6sg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/contrib/auto-render.min.js" integrity="sha512-Do7uJAaHZm5OLrIv/yN4w0iG1dbu01kzdMNnFfu/mAqgUk6Nniv2JYHcwH+cNwjqgLcqcuBBk+JRvprLVI8azg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha512-0doc9hKxR3PYwso42RD1p5ySZpzzuDiOwMrdCEh2WdJZCjcmFKc/wEnL+z8fBQrnHoiNWbo+3fiGkOYXBdQp4A==" crossorigin="anonymous"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement( document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "[%", right: "%]", display: true},
+            {left: "$", right: "$", display: false}
+        ]}
+        );
+    });
+    </script>
+
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Psi ML</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About Me</a><a class="page-link" href="/search/">Search</a><a class="page-link" href="/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Make More Interesting Random Music</h1><p class="page-description">A minimal example of using markdown with fastpages.</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2020-08-02T00:00:00-05:00" itemprop="datePublished">
+        Aug 2, 2020
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      8 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/categories/#markdown">markdown</a>
+        
+      
+      </p>
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul id="toc" class="section-nav">
+<li class="toc-entry toc-h1"><a href="#make-more-interesting-random-music">Make More Interesting Random Music</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#pick-a-scale">Pick a Scale</a></li>
+<li class="toc-entry toc-h2"><a href="#find-all-midi-notes-given-key-notes">Find All MIDI Notes Given Key Notes</a></li>
+<li class="toc-entry toc-h2"><a href="#randomly-draw-notes">Randomly Draw Notes</a></li>
+<li class="toc-entry toc-h2"><a href="#chord-accompaniment">Chord Accompaniment</a></li>
+<li class="toc-entry toc-h2"><a href="#vary-the-rhythm">Vary the Rhythm</a></li>
+</ul>
+</li>
+</ul><h1 id="make-more-interesting-random-music">
+<a class="anchor" href="#make-more-interesting-random-music" aria-hidden="true"><span class="octicon octicon-link"></span></a>Make More Interesting Random Music</h1>
+
+<p>We saw last time that it is simple to construct a MIDI file with the <code class="language-plaintext highlighter-rouge">pretty_midi</code> package. Now to make something a little more musically interesting than alternating between two notes we need to randomly generate notes to play using some basic music theory to make things sound “good.” To do this we will:</p>
+
+<ul>
+  <li>choose a scale</li>
+  <li>find all of the midi notes attached to that scale</li>
+  <li>randomly draw notes from that collection of midi notes</li>
+  <li>get a pleasing collection of simple chords to accompany the melody</li>
+  <li>vary the rhythm of the melody</li>
+</ul>
+
+<h2 id="pick-a-scale">
+<a class="anchor" href="#pick-a-scale" aria-hidden="true"><span class="octicon octicon-link"></span></a>Pick a Scale</h2>
+
+<p>First we use a couple of nice utilities of <code class="language-plaintext highlighter-rouge">pretty_midi</code>, a method which takes an integer and spits out one of the major and minor keys and another method which takes that same integer and returns how many accidentals the key has. Using the key name we can determine whether the key has flat accidentals or sharp accidentals and then by using the fact that “accidentals accumulate” (if a key has a G# then it also has a C#, for example) we can easily identify which notes are in the key.</p>
+
+<p>To say more, we are using the fact that the Major and Minor keys have certain nice patterns. If we start from C and move up in perfect 5ths (C, G, D, A) then those corresponding (major) keys each add an accidental:</p>
+
+<ul>
+  <li>C Major: CDEFGAB</li>
+  <li>G Major: GABCDEF#</li>
+  <li>D Major: DEF#GABC#</li>
+  <li>A Major: ABC#DEF#G#</li>
+  <li>…</li>
+</ul>
+
+<p>This means we know the exact notes that are made sharp or (flat) if we know if the key is sharp (flat) and how many accidentals there are, we do not even need to know the root: we are being told the same information in a different way. Now, there is actually a more insightful way to do this (how making major scales is normally taught) by using the fact that you start at the root and add notes with the pattern WWHWWWH, but it was fun to think of a different way to get the notes.</p>
+
+<p>We return the <code class="language-plaintext highlighter-rouge">key_notes</code> which runs from C to B because this is how the MIDI format is laid out for each octave (… B1 C2 C#2 … A#2 B2 C3 …), but we also save off the notes of the key starting from the root for (optional) printing to the user as <code class="language-plaintext highlighter-rouge">scale_notes</code>.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">note_names</span> <span class="o">=</span> <span class="p">[</span><span class="n">n</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="s">'CDEFGAB'</span><span class="p">]</span>
+<span class="n">sharp_accidentals</span> <span class="o">=</span> <span class="p">[</span><span class="n">n</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="s">'FCGDAEB'</span><span class="p">]</span>
+<span class="n">flat_accidentals</span> <span class="o">=</span> <span class="p">[</span><span class="n">n</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="s">'BEADGCF'</span><span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">determine_key_notes</span><span class="p">(</span><span class="n">key_number</span><span class="p">):</span>
+    <span class="n">key_name</span> <span class="o">=</span> <span class="n">pretty_midi</span><span class="p">.</span><span class="n">key_number_to_key_name</span><span class="p">(</span><span class="n">key_number</span><span class="p">)</span>
+    <span class="n">_</span><span class="p">,</span> <span class="n">num_accidentals</span> <span class="o">=</span> <span class="n">pretty_midi</span><span class="p">.</span><span class="n">key_number_to_mode_accidentals</span><span class="p">(</span><span class="n">key_number</span><span class="p">)</span>
+    <span class="n">root</span> <span class="o">=</span> <span class="n">key_name</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">root_index</span> <span class="o">=</span> <span class="n">note_names</span><span class="p">.</span><span class="n">index</span><span class="p">(</span><span class="n">root</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">key_name</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s">"b"</span><span class="p">:</span>
+        <span class="n">accidental_mark</span> <span class="o">=</span> <span class="s">'b'</span>
+        <span class="n">accidentals</span> <span class="o">=</span> <span class="n">flat_accidentals</span><span class="p">[:</span><span class="n">num_accidentals</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">accidental_mark</span> <span class="o">=</span> <span class="s">'#'</span>
+        <span class="n">accidentals</span> <span class="o">=</span> <span class="n">sharp_accidentals</span><span class="p">[:</span><span class="n">num_accidentals</span><span class="p">]</span>
+
+    <span class="n">key_notes</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">n</span><span class="p">:</span> <span class="n">n</span> <span class="o">+</span> <span class="n">accidental_mark</span> <span class="k">if</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">accidentals</span> <span class="k">else</span> <span class="n">n</span><span class="p">,</span> <span class="n">note_names</span><span class="p">))</span>
+
+    <span class="n">scale_notes</span> <span class="o">=</span> <span class="p">(</span><span class="n">key_notes</span> <span class="o">+</span> <span class="n">key_notes</span><span class="p">)[</span><span class="n">root_index</span><span class="p">:</span><span class="n">root_index</span> <span class="o">+</span> <span class="mi">7</span><span class="p">]</span>
+</code></pre></div></div>
+
+<h2 id="find-all-midi-notes-given-key-notes">
+<a class="anchor" href="#find-all-midi-notes-given-key-notes" aria-hidden="true"><span class="octicon octicon-link"></span></a>Find All MIDI Notes Given Key Notes</h2>
+
+<p>For this, use the <code class="language-plaintext highlighter-rouge">pretty_midi</code> utility that converts note names to MIDI note numbers and apply it to all the note names with all the octave numbers attached.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">get_all_midi_numbers</span><span class="p">(</span><span class="n">note_names</span><span class="p">):</span>
+    <span class="n">midi_numbers</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">note_names</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">note_names</span><span class="p">))</span>  <span class="c1"># simple de-dup
+</span>    <span class="k">for</span> <span class="n">octave</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">9</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">note</span> <span class="ow">in</span> <span class="n">note_names</span><span class="p">:</span>
+            <span class="n">midi_number</span> <span class="o">=</span> <span class="n">pretty_midi</span><span class="p">.</span><span class="n">note_name_to_number</span><span class="p">(</span><span class="n">note</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">octave</span><span class="p">))</span>
+            <span class="n">midi_numbers</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">midi_number</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">midi_numbers</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>We do not need to de-duplicate or sort for our current use, but I added those steps in case I supply some note names “out of order” (<code class="language-plaintext highlighter-rouge">[D, C]</code> instead of <code class="language-plaintext highlighter-rouge">[C, D]</code> for instance) or provide possible note duplicates for other uses.</p>
+
+<h2 id="randomly-draw-notes">
+<a class="anchor" href="#randomly-draw-notes" aria-hidden="true"><span class="octicon octicon-link"></span></a>Randomly Draw Notes</h2>
+
+<p>Here you can now use the collection of midi notes and just make a random choice from it at each step. For instance if <code class="language-plaintext highlighter-rouge">g_maj_midi</code> is the collection of MIDI notes for G Major then you can randomly select one with <code class="language-plaintext highlighter-rouge">pitch = random.choice(g_maj_midi[21:36])</code> where we take a slice of the array to restrict the notes to just a couple of octaves.</p>
+
+<h2 id="chord-accompaniment">
+<a class="anchor" href="#chord-accompaniment" aria-hidden="true"><span class="octicon octicon-link"></span></a>Chord Accompaniment</h2>
+
+<p>We want to get just simple chords from the major scale for the piano to play them for whole notes. There are some existing Python packages that can be used:</p>
+
+<ul>
+  <li>
+<a href="https://github.com/Miserlou/chords2midi">chords2midi</a> let’s you generate a MIDI file by supplying a progressing an a key: <code class="language-plaintext highlighter-rouge">c2m I V vi IV --key C</code>
+</li>
+  <li>
+<code class="language-plaintext highlighter-rouge">chords2midi</code> uses <a href="https://github.com/yuma-m/pychord">pychord</a>, which will generate the component notes of a chord from its name as well as name a chord from its notes.</li>
+</ul>
+
+<p>These are both strong utilities that I will certainly use as I expand but for now I will do something much simpler. You can get a major scale chord progression by simply going to the scale and taking a note for the root and getting the third and fifth of a triad by just taking the second and fourth notes after your root. For instance, you can get a C (major) triad from the C major scale by looking at the scale CDEFGAB and using that pattern C_E_G__. Whether this is major or minor is irrelevant for our use: we just want to grab all the simple triads (not worrying about inversions or anything) and collect them together for one octave of root notes:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">get_major_progression</span><span class="p">(</span><span class="n">root_index</span><span class="p">,</span> <span class="n">midi_numbers</span><span class="p">):</span>
+    <span class="n">chords</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">):</span>
+        <span class="n">chord_root_index</span> <span class="o">=</span> <span class="n">root_index</span> <span class="o">+</span> <span class="n">i</span>
+        <span class="n">chord_third_index</span> <span class="o">=</span> <span class="n">chord_root_index</span> <span class="o">+</span> <span class="mi">2</span>
+        <span class="n">chord_fifth_index</span> <span class="o">=</span> <span class="n">chord_root_index</span> <span class="o">+</span> <span class="mi">4</span>
+        <span class="n">root</span> <span class="o">=</span> <span class="n">midi_numbers</span><span class="p">[</span><span class="n">chord_root_index</span><span class="p">]</span>
+        <span class="n">third</span> <span class="o">=</span> <span class="n">midi_numbers</span><span class="p">[</span><span class="n">chord_third_index</span><span class="p">]</span>
+        <span class="n">fifth</span> <span class="o">=</span> <span class="n">midi_numbers</span><span class="p">[</span><span class="n">chord_fifth_index</span><span class="p">]</span>
+        <span class="n">chord</span> <span class="o">=</span> <span class="p">[</span><span class="n">root</span><span class="p">,</span> <span class="n">third</span><span class="p">,</span> <span class="n">fifth</span><span class="p">]</span>
+        <span class="n">chords</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">chord</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">chords</span>
+</code></pre></div></div>
+
+<p>This will generate a list of chord lists, where each chord list is the midi notes for a given triad. Note, if you do not feed the notes of a key as the MIDI numbers you will not get a major key progression, so this might be imperfectly named.</p>
+
+<h2 id="vary-the-rhythm">
+<a class="anchor" href="#vary-the-rhythm" aria-hidden="true"><span class="octicon octicon-link"></span></a>Vary the Rhythm</h2>
+
+<p>When we were adding notes one at a time we were keeping track of when the note began and when it ended in seconds. It would be nice to forget about when they begin and imagine writing the song and moving forward, adding notes “now.” To do this we make a writer for our instrument that keeps track of when “now” is and allows us to add notes one at a time, as a chord, or in a chunk of notes. Using this chunking allows us to vary the rhythm, we can randomly determine how long the next note(s) should be and then play a bunch of notes of that length. This is slightly more natural than varying each note independently, because shorter notes are often grouped together.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Writer</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instrument</span><span class="p">):</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">position</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">instrument</span> <span class="o">=</span> <span class="n">instrument</span>
+
+    <span class="k">def</span> <span class="nf">add_note</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pitch</span><span class="p">,</span> <span class="n">length</span><span class="p">,</span> <span class="n">move_forward</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+        <span class="n">note</span> <span class="o">=</span> <span class="n">pretty_midi</span><span class="p">.</span><span class="n">Note</span><span class="p">(</span><span class="n">velocity</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">pitch</span><span class="o">=</span><span class="n">pitch</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="bp">self</span><span class="p">.</span><span class="n">position</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="bp">self</span><span class="p">.</span><span class="n">position</span> <span class="o">+</span> <span class="n">length</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">instrument</span><span class="p">.</span><span class="n">notes</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">note</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">move_forward</span><span class="p">:</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">position</span> <span class="o">+=</span> <span class="n">length</span>
+
+    <span class="k">def</span> <span class="nf">add_note_series</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pitches</span><span class="p">,</span> <span class="n">length</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">pitch</span> <span class="ow">in</span> <span class="n">pitches</span><span class="p">:</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">add_note</span><span class="p">(</span><span class="n">pitch</span><span class="p">,</span> <span class="n">length</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">add_chord</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pitches</span><span class="p">,</span> <span class="n">length</span><span class="p">,</span> <span class="n">move_forward</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">pitch</span> <span class="ow">in</span> <span class="n">pitches</span><span class="p">:</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">add_note</span><span class="p">(</span><span class="n">pitch</span><span class="p">,</span> <span class="n">length</span><span class="p">,</span> <span class="n">move_forward</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">move_forward</span><span class="p">:</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">position</span> <span class="o">+=</span> <span class="n">length</span>
+</code></pre></div></div>
+
+<p>We leave <code class="language-plaintext highlighter-rouge">move_forward</code> as an optional argument, because if we are writing notes that will occur at the same time (to form a chord) then we want the Writer “head” or position to stay at the same spot until we are done adding notes to that point in time. There are other simplifications that are made (no velocity changes), but this simple class gives us a lot of power so that we can more expressively generate midi music.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">pretty_midi</span>
+<span class="kn">from</span> <span class="nn">music_info</span> <span class="kn">import</span> <span class="n">determine_key_notes</span>
+<span class="kn">import</span> <span class="nn">music_info</span>
+<span class="kn">import</span> <span class="nn">random</span>
+
+<span class="c1"># Create a PrettyMIDI object
+</span><span class="n">ensemble</span> <span class="o">=</span> <span class="n">pretty_midi</span><span class="p">.</span><span class="n">PrettyMIDI</span><span class="p">()</span>
+
+<span class="c1"># Create an Instrument instance for a cello instrument
+# Changed to a guitar for my song, and was lazy about changing variable names
+# cello_program = pretty_midi.instrument_name_to_program('Cello')
+</span><span class="n">cello_program</span> <span class="o">=</span> <span class="n">pretty_midi</span><span class="p">.</span><span class="n">instrument_name_to_program</span><span class="p">(</span><span class="s">'Overdriven Guitar'</span><span class="p">)</span>
+<span class="n">cello</span> <span class="o">=</span> <span class="n">pretty_midi</span><span class="p">.</span><span class="n">Instrument</span><span class="p">(</span><span class="n">program</span><span class="o">=</span><span class="n">cello_program</span><span class="p">)</span>
+
+<span class="c1"># do the same for a piano
+</span><span class="n">piano_program</span> <span class="o">=</span> <span class="n">pretty_midi</span><span class="p">.</span><span class="n">instrument_name_to_program</span><span class="p">(</span><span class="s">'Acoustic Grand Piano'</span><span class="p">)</span>
+<span class="n">piano</span> <span class="o">=</span> <span class="n">pretty_midi</span><span class="p">.</span><span class="n">Instrument</span><span class="p">(</span><span class="n">program</span><span class="o">=</span><span class="n">piano_program</span><span class="p">)</span>
+
+<span class="c1"># Add the instruments to the PrettyMIDI object
+</span><span class="n">ensemble</span><span class="p">.</span><span class="n">instruments</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">cello</span><span class="p">)</span>
+<span class="n">ensemble</span><span class="p">.</span><span class="n">instruments</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">piano</span><span class="p">)</span>
+
+<span class="c1"># here is where I put the Writer class from above
+</span>
+<span class="n">piano_writer</span> <span class="o">=</span> <span class="n">Writer</span><span class="p">(</span><span class="n">piano</span><span class="p">)</span>
+<span class="n">cello_writer</span> <span class="o">=</span> <span class="n">Writer</span><span class="p">(</span><span class="n">cello</span><span class="p">)</span>
+
+<span class="n">song_length_in_seconds</span> <span class="o">=</span> <span class="mi">30</span>
+<span class="n">bpm</span> <span class="o">=</span> <span class="mi">120</span>
+<span class="n">beat_length</span> <span class="o">=</span> <span class="mi">60</span> <span class="o">/</span> <span class="n">bpm</span>
+<span class="n">num_beats</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">song_length_in_seconds</span> <span class="o">/</span> <span class="n">beat_length</span><span class="p">)</span>
+
+<span class="c1"># Decided on G major, which is index 7
+</span><span class="n">g_maj</span> <span class="o">=</span> <span class="n">music_info</span><span class="p">.</span><span class="n">determine_key_notes</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>
+<span class="n">g_maj_midi</span> <span class="o">=</span> <span class="n">music_info</span><span class="p">.</span><span class="n">get_all_midi_numbers</span><span class="p">(</span><span class="n">g_maj</span><span class="p">)</span>
+<span class="n">root_number</span> <span class="o">=</span> <span class="n">pretty_midi</span><span class="p">.</span><span class="n">note_name_to_number</span><span class="p">(</span><span class="s">"G4"</span><span class="p">)</span>
+<span class="n">root_index</span> <span class="o">=</span> <span class="n">g_maj_midi</span><span class="p">.</span><span class="n">index</span><span class="p">(</span><span class="n">root_number</span><span class="p">)</span>
+<span class="n">major_progression</span> <span class="o">=</span> <span class="n">music_info</span><span class="p">.</span><span class="n">get_major_progression</span><span class="p">(</span><span class="n">root_index</span><span class="p">,</span> <span class="n">g_maj_midi</span><span class="p">)</span>
+
+<span class="n">accompaniment_writer</span> <span class="o">=</span> <span class="n">piano_writer</span>
+<span class="n">solo_writer</span> <span class="o">=</span> <span class="n">cello_writer</span>
+
+<span class="c1"># now we see the power of the writer object
+</span><span class="k">while</span> <span class="n">accompaniment_writer</span><span class="p">.</span><span class="n">position</span> <span class="o">&lt;</span> <span class="n">song_length_in_seconds</span><span class="p">:</span>
+    <span class="n">length</span> <span class="o">=</span> <span class="n">beat_length</span> <span class="o">*</span> <span class="mi">4</span>  <span class="c1"># whole note chords
+</span>
+    <span class="c1"># choose a random chord from the progression
+</span>    <span class="n">chord</span> <span class="o">=</span> <span class="n">random</span><span class="p">.</span><span class="n">choice</span><span class="p">(</span><span class="n">major_progression</span><span class="p">)</span>  
+
+    <span class="c1"># add a lower octave of the notes for fullness
+</span>    <span class="n">larger_chord</span> <span class="o">=</span> <span class="n">chord</span> <span class="o">+</span> <span class="p">[</span><span class="n">n</span> <span class="o">-</span> <span class="mi">12</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">chord</span><span class="p">]</span>
+
+    <span class="c1"># write the chord
+</span>    <span class="n">accompaniment_writer</span><span class="p">.</span><span class="n">add_chord</span><span class="p">(</span><span class="n">larger_chord</span><span class="p">,</span> <span class="n">length</span><span class="p">)</span>
+
+<span class="k">while</span> <span class="n">solo_writer</span><span class="p">.</span><span class="n">position</span> <span class="o">&lt;</span> <span class="n">song_length_in_seconds</span><span class="p">:</span>
+    <span class="c1"># choose to play 16th, 8th, quarter, half, or whole note(s)
+</span>    <span class="n">division</span> <span class="o">=</span> <span class="n">random</span><span class="p">.</span><span class="n">choice</span><span class="p">([</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+    <span class="n">length</span> <span class="o">=</span> <span class="n">beat_length</span> <span class="o">*</span> <span class="p">(</span><span class="mi">2</span> <span class="o">**</span> <span class="n">division</span><span class="p">)</span>
+
+    <span class="c1"># if we chose 16th or 8th, play multiple of them
+</span>    <span class="k">if</span> <span class="n">division</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">num_notes</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">**</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span> <span class="o">*</span> <span class="n">division</span><span class="p">)</span>
+        <span class="n">pitches</span> <span class="o">=</span> <span class="n">random</span><span class="p">.</span><span class="n">choices</span><span class="p">(</span><span class="n">g_maj_midi</span><span class="p">[</span><span class="mi">21</span><span class="p">:</span><span class="mi">36</span><span class="p">],</span> <span class="n">k</span><span class="o">=</span><span class="n">num_notes</span><span class="p">)</span>
+        <span class="n">solo_writer</span><span class="p">.</span><span class="n">add_note_series</span><span class="p">(</span><span class="n">pitches</span><span class="p">,</span> <span class="n">length</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">pitch</span> <span class="o">=</span> <span class="n">random</span><span class="p">.</span><span class="n">choice</span><span class="p">(</span><span class="n">g_maj_midi</span><span class="p">[</span><span class="mi">21</span><span class="p">:</span><span class="mi">36</span><span class="p">])</span>
+        <span class="n">solo_writer</span><span class="p">.</span><span class="n">add_note</span><span class="p">(</span><span class="n">pitch</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="n">beat_length</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">write_song</span><span class="p">():</span>
+    <span class="c1"># Write out the MIDI data
+</span>    <span class="n">ensemble</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="s">'duo.mid'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Now with this I created the following <a href="https://soundcloud.com/simon-stolarczyk/duo">simple duet</a>. It isn’t the most thrilling piece of music, but with relatively simple rules behind it, I think it is interesting how “complex” it sounds.</p>
+
+  </div><a class="u-url" href="/markdown/2020/08/02/Python_and_MIDI_2.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>Blog for music, ML, and cheatsheets.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/spstolar" target="_blank" title="spstolar"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/psistolar" target="_blank" title="psistolar"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

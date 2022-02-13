@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>FastBook Chapter 5 Thoughts | Psi ML</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="FastBook Chapter 5 Thoughts" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A minimal example of using markdown with fastpages." />
+<meta property="og:description" content="A minimal example of using markdown with fastpages." />
+<link rel="canonical" href="http://simonstolarczyk.com/markdown/2020/07/21/fastbook_ch5.html" />
+<meta property="og:url" content="http://simonstolarczyk.com/markdown/2020/07/21/fastbook_ch5.html" />
+<meta property="og:site_name" content="Psi ML" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-07-21T00:00:00-05:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="FastBook Chapter 5 Thoughts" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2020-07-21T00:00:00-05:00","datePublished":"2020-07-21T00:00:00-05:00","description":"A minimal example of using markdown with fastpages.","headline":"FastBook Chapter 5 Thoughts","mainEntityOfPage":{"@type":"WebPage","@id":"http://simonstolarczyk.com/markdown/2020/07/21/fastbook_ch5.html"},"url":"http://simonstolarczyk.com/markdown/2020/07/21/fastbook_ch5.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="http://simonstolarczyk.com/feed.xml" title="Psi ML" /><link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.css" integrity="sha512-h7nl+xz8wgDlNM4NqKEM4F1NkIRS17M9+uJwIGwuo8vGqIl4BhuCKdxjWEINm+xyrUjNCnK5dCrhM0sj+wTIXw==" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.js" integrity="sha512-/CMIhXiDA3m2c9kzRyd97MTb3MC6OVnx4TElQ7fkkoRghwDf6gi41gaT1PwF270W6+J60uTmwgeRpNpJdRV6sg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/contrib/auto-render.min.js" integrity="sha512-Do7uJAaHZm5OLrIv/yN4w0iG1dbu01kzdMNnFfu/mAqgUk6Nniv2JYHcwH+cNwjqgLcqcuBBk+JRvprLVI8azg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha512-0doc9hKxR3PYwso42RD1p5ySZpzzuDiOwMrdCEh2WdJZCjcmFKc/wEnL+z8fBQrnHoiNWbo+3fiGkOYXBdQp4A==" crossorigin="anonymous"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement( document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "[%", right: "%]", display: true},
+            {left: "$", right: "$", display: false}
+        ]}
+        );
+    });
+    </script>
+
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Psi ML</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About Me</a><a class="page-link" href="/search/">Search</a><a class="page-link" href="/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">FastBook Chapter 5 Thoughts</h1><p class="page-description">A minimal example of using markdown with fastpages.</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2020-07-21T00:00:00-05:00" itemprop="datePublished">
+        Jul 21, 2020
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      9 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/categories/#markdown">markdown</a>
+        
+      
+      </p>
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul id="toc" class="section-nav">
+<li class="toc-entry toc-h1"><a href="#fastbook-chapter-5-thoughts">FastBook Chapter 5 Thoughts</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#import-concepts">Import concepts:</a></li>
+<li class="toc-entry toc-h2"><a href="#some-notes-during-reading">Some Notes During Reading</a></li>
+<li class="toc-entry toc-h2"><a href="#references-to-read">References to Read</a></li>
+<li class="toc-entry toc-h2"><a href="#thoughts-on-selected-qs">Thoughts on selected Qs</a></li>
+</ul>
+</li>
+</ul><h1 id="fastbook-chapter-5-thoughts">
+<a class="anchor" href="#fastbook-chapter-5-thoughts" aria-hidden="true"><span class="octicon octicon-link"></span></a>FastBook Chapter 5 Thoughts</h1>
+
+<p>After reading the first half of chapter 3 (will read the second half this week) and (mostly) breezing through Chapter 4 (it contained a lot of familiar material), I worked on Chapter 5 this weekend.</p>
+
+<h2 id="import-concepts">
+<a class="anchor" href="#import-concepts" aria-hidden="true"><span class="octicon octicon-link"></span></a>Import concepts:</h2>
+
+<ul>
+  <li>Presizing.</li>
+  <li>Checking your DataBlock before you begin training</li>
+  <li>Train early (get a reasonable MVP) and often (if it’s not too expensive).</li>
+  <li>Cross-Entropy Loss for the binary case and extending it to multi-class examples.</li>
+  <li>Confusion matrix with <code class="language-plaintext highlighter-rouge">ClassificationInterpretation</code> and looking at the <code class="language-plaintext highlighter-rouge">most_confused</code> examples.</li>
+  <li>Learning Rate Finder</li>
+  <li>More particulars on transfer learning, including how to use discriminative learning rates to not lose the solid training of the transferred modeled.</li>
+</ul>
+
+<h2 id="some-notes-during-reading">
+<a class="anchor" href="#some-notes-during-reading" aria-hidden="true"><span class="octicon octicon-link"></span></a>Some Notes During Reading</h2>
+
+<blockquote>
+  <p>Presizing is a particular way to do image augmentation that is designed to minimize data destruction while maintaining good performance.
+The general idea is to apply a composition of the augmentation operations all at once rather than iteratively augment and interpolate. This has savings both in terms of computation and the final quality of the examples.</p>
+</blockquote>
+
+<p>In the 3s and 7s table there is a column labeled “loss”, which for me was a bit confusing. In the first row loss was the predicted output of the “3” class, which happened to be the correct answer. However, loss was just the output of that example, which does not quite make sense because you are looking to minimize loss which conflicts with the goal of maximizing the predicted output for the true class. It looks like this was just an oversight with the naming convention because to compute the loss more things are done and the text that follows makes this clear.</p>
+
+<p>I found it useful to explicitly calculate the loss in the binary example provided.</p>
+
+<p>Activations:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">acts</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:]</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>tensor([0.6734, 0.2576])</p>
+</blockquote>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">class0_act</span> <span class="o">=</span> <span class="n">acts</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="n">class1_act</span> <span class="o">=</span> <span class="n">acts</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="n">class0_act</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>tensor(0.6734)</p>
+</blockquote>
+
+<p>Computing the exponential of the activations to then get the softmax.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">exp</span>
+<span class="n">exp0</span> <span class="o">=</span> <span class="n">exp</span><span class="p">(</span><span class="n">class0_act</span><span class="p">)</span>
+<span class="n">exp0</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>1.9608552547588787</p>
+</blockquote>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">exp1</span> <span class="o">=</span> <span class="n">exp</span><span class="p">(</span><span class="n">class1_act</span><span class="p">)</span>
+<span class="n">smax0</span> <span class="o">=</span> <span class="n">exp0</span> <span class="o">/</span> <span class="p">(</span><span class="n">exp0</span> <span class="o">+</span> <span class="n">exp1</span><span class="p">)</span>
+<span class="n">smax0</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>0.602468670578454</p>
+</blockquote>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">smax1</span> <span class="o">=</span> <span class="n">exp1</span> <span class="o">/</span> <span class="p">(</span><span class="n">exp0</span> <span class="o">+</span> <span class="n">exp1</span><span class="p">)</span>
+<span class="n">smax1</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>0.39753132942154595</p>
+</blockquote>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">smax0</span> <span class="o">+</span> <span class="n">smax1</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>1.0</p>
+</blockquote>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">log</span>
+<span class="n">log</span><span class="p">(</span><span class="n">smax0</span><span class="p">)</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>-0.5067196140092344</p>
+</blockquote>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">log</span><span class="p">(</span><span class="n">smax1</span><span class="p">)</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>-0.9224815318387478</p>
+</blockquote>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">-</span><span class="n">log</span><span class="p">(</span><span class="n">smax0</span><span class="p">)</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>0.5067196140092344</p>
+</blockquote>
+
+<p>And that is the loss for the first example, because the true class was 0. This matches the calculation using the fastai classes, which is always a relief.</p>
+
+<h2 id="references-to-read">
+<a class="anchor" href="#references-to-read" aria-hidden="true"><span class="octicon octicon-link"></span></a>References to Read</h2>
+
+<ul>
+  <li><a href="https://arxiv.org/abs/1506.01186">Cyclical Learning Rates for Training Neural Networks</a></li>
+  <li><a href="https://arxiv.org/abs/1411.1792">How transferable are features in deep neural networks?</a></li>
+</ul>
+
+<h2 id="thoughts-on-selected-qs">
+<a class="anchor" href="#thoughts-on-selected-qs" aria-hidden="true"><span class="octicon octicon-link"></span></a>Thoughts on selected Qs</h2>
+
+<ol>
+  <li>
+    <p>Why do we first resize to a large size on the CPU, and then to a smaller size on the GPU?</p>
+
+    <p>You want to create a uniform input size for your data and also apply various transformations to augment it. The presizing method, running augmentation transformations as a single composition rather than iteratively, allows you to have larger/more “rich” inputs to transform before making them a smaller, uniform size that you will train the model with.</p>
+  </li>
+  <li>
+    <p>What are the two ways in which data is most commonly provided, for most deep learning datasets?</p>
+
+    <ol>
+      <li>A collection of data elements, that have filenames indicating information about them, like their class. (A folder of pictures where each picture has a file name with its ID and class).</li>
+      <li>Tabular format that can either contain the data in each row (along with the metadata) or point to data in other formats. (A csv file with ID, true class, and a hyper link to the input picture.)</li>
+    </ol>
+  </li>
+  <li>
+    <p>Look up the documentation for <code class="language-plaintext highlighter-rouge">L</code> and try using a few of the new methods is that it adds.</p>
+
+    <p><code class="language-plaintext highlighter-rouge">L</code> is a <a href="https://fastcore.fast.ai/foundation#L">beefier list class</a>. How it’s different from a regular list:</p>
+
+    <ul>
+      <li>the print function is smarter. It provides the length of the list and truncates the end, which is nice if you’ve ever crashed a server because you accidentally printed out an obscenely long list.</li>
+      <li>you can access L with a tuple, whereas a normal list will break if you try to access it that way.</li>
+      <li>it has <code class="language-plaintext highlighter-rouge">unique()</code>, which functions like the same method in Pandas.</li>
+      <li>it has a filter method attribute.</li>
+    </ul>
+  </li>
+  <li>
+    <p>Look up the documentation for the Python <code class="language-plaintext highlighter-rouge">pathlib</code> module and try using a few methods of the <code class="language-plaintext highlighter-rouge">Path</code> class.</p>
+
+    <p><a href="https://docs.python.org/3/library/pathlib.html">Path</a> was introduced to Python in 3.4. It appears to combine a bunch of common things that you typically use <code class="language-plaintext highlighter-rouge">os</code> with along with the ability to manage file paths without doing string manipulations (as well as reducing the <code class="language-plaintext highlighter-rouge">\</code> vs <code class="language-plaintext highlighter-rouge">/</code> mistakes that are frequently made).</p>
+
+    <p>One nice thing that can be done, set <code class="language-plaintext highlighter-rouge">here = Path('.')</code> and then iterate over the current directory with <code class="language-plaintext highlighter-rouge">for f in here.iterdir(): print(f)</code>. You can also <code class="language-plaintext highlighter-rouge">.open()</code> a path object rather than feeding it to <code class="language-plaintext highlighter-rouge">open()</code> and do <code class="language-plaintext highlighter-rouge">glob</code> stuff.</p>
+  </li>
+  <li>
+    <p>Give two examples of ways that image transformations can degrade the quality of the data.</p>
+
+    <ol>
+      <li>Image simply rotating a square 45 degrees to stand it up on one corner. Now the new image that you get (take an old square position cut out of the rotated square position) is missing anything in the corners, so it has to be interpolated. This loses about 17% of the original image, so it’s pretty significant!</li>
+      <li>Brightening an image will move the brighter pixels up to the maximum brightness, so their original brightness cannot be recovered by simply redarkening.</li>
+    </ol>
+  </li>
+  <li>
+    <p>What method does fastai provide to view the data in a <code class="language-plaintext highlighter-rouge">DataLoaders</code>?</p>
+
+    <p>You can use <code class="language-plaintext highlighter-rouge">.show_batch(nrows, ncols)</code> on the DataLoaders object to get a grid of some of the examples.</p>
+  </li>
+  <li>
+    <p>What method does fastai provide to help you debug a <code class="language-plaintext highlighter-rouge">DataBlock</code>?</p>
+
+    <p>Using <code class="language-plaintext highlighter-rouge">.summary()</code> on the DataBlock object gives a verbose attempt to try and create the batch. The output from this, along with errors that come up if it fails can help you notice a problem.</p>
+  </li>
+  <li>
+    <p>Should you hold off on training a model until you have thoroughly cleaned your data?</p>
+
+    <p>No, sometimes life is easy! Also, it’s good to get reasonable bench marks as soon as possible. Not only to help game-ify the problem and motivate you to work on it, but also to have a baseline to see if the room for improvement is worth the energy.</p>
+  </li>
+  <li>
+    <p>What are the two pieces that are combined into cross-entropy loss in PyTorch?</p>
+
+    <p><code class="language-plaintext highlighter-rouge">nn.CrossEntropyLoss</code> (<a href="https://pytorch.org/docs/stable/nn.html#torch.nn.CrossEntropyLoss">see the docs</a>) applies <code class="language-plaintext highlighter-rouge">nll_loss</code> after <code class="language-plaintext highlighter-rouge">log_softmax</code> (which is <code class="language-plaintext highlighter-rouge">log</code> of <code class="language-plaintext highlighter-rouge">softmax</code>)</p>
+  </li>
+  <li>
+    <p>What are the two properties of activations that softmax ensures? Why is this important?</p>
+
+    <ol>
+      <li>You can interpret activations as probabilities.
+        <ul>
+          <li>outputs sum to one</li>
+          <li>outputs are non-negative</li>
+        </ul>
+      </li>
+      <li>It forces the model to favor a single class.</li>
+    </ol>
+
+    <p>This more relevant behavior that is mentioned that it amplifies small differences, which is useful if you want the network to be somewhat decisive rather than having all outputs close to each other.</p>
+  </li>
+  <li>
+    <p>When might you want your activations to not have these two properties?</p>
+
+    <p>The parenthetical comment in the main text mentions that you may not want the model to pick a class just because it has a slightly larger output. You want the model to be sure about the class, not just relatively sure.</p>
+
+    <p>For the probability property, it might be misleading because it isn’t necessarily the actual probability of the example being that class.</p>
+  </li>
+  <li>
+    <p>Why can’t we use <code class="language-plaintext highlighter-rouge">torch.where</code> to create a loss function for datasets where our label can have more than two categories?</p>
+
+    <p>In part, this is a constraint of the where function. Where selects between two outputs based on a condition. It is too difficult to right a nested condition when you have more than two outcomes and selecting the loss requires a bit more work, so this trick becomes way less convenient.</p>
+  </li>
+  <li>
+    <p>What are two good rules of thumb for picking a learning rate from the learning rate finder?</p>
+
+    <blockquote>
+      <ul>
+        <li>One order of magnitude less than where the minimum loss was achieved (i.e., the minimum divided by 10).</li>
+        <li>The last point where the loss was clearly decreasing</li>
+      </ul>
+    </blockquote>
+  </li>
+  <li>
+    <p>What two steps does the <code class="language-plaintext highlighter-rouge">fine_tune</code> method do?</p>
+
+    <p>We go to the <a href="https://github.com/fastai/fastai2/blob/master/fastai2/callback/schedule.py#L141">source</a>:</p>
+
+    <div class="language-python highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code><span class="bp">self</span><span class="p">.</span><span class="n">freeze</span><span class="p">()</span>
+<span class="bp">self</span><span class="p">.</span><span class="n">fit_one_cycle</span><span class="p">(</span><span class="n">freeze_epochs</span><span class="p">,</span> <span class="nb">slice</span><span class="p">(</span><span class="n">base_lr</span><span class="p">),</span> <span class="n">pct_start</span><span class="o">=</span><span class="mf">0.99</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="n">base_lr</span> <span class="o">/=</span> <span class="mi">2</span>
+<span class="bp">self</span><span class="p">.</span><span class="n">unfreeze</span><span class="p">()</span>
+<span class="bp">self</span><span class="p">.</span><span class="n">fit_one_cycle</span><span class="p">(</span><span class="n">epochs</span><span class="p">,</span> <span class="nb">slice</span><span class="p">(</span><span class="n">base_lr</span><span class="o">/</span><span class="n">lr_mult</span><span class="p">,</span> <span class="n">base_lr</span><span class="p">),</span> <span class="n">pct_start</span><span class="o">=</span><span class="n">pct_start</span><span class="p">,</span> <span class="n">div</span><span class="o">=</span><span class="n">div</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</code></pre></div>    </div>
+
+    <p>Thus it:
+    1. Performs a one-cycle fit with the pre-trained layers frozen (their weights do not update).
+    2. Performs another one-cycle fit with the pre-trained layers unfrozen at half the learning rate.</p>
+  </li>
+  <li>
+    <p>What are discriminative learning rates?</p>
+
+    <p>The idea here is that you may want weights in certain layers to change at a different rate. In particular, if your first layers come from a pretrained network you may want to do updates to them more slowly than the last layers which are tailored to your particular problem.</p>
+  </li>
+  <li>
+    <p>How is a Python <code class="language-plaintext highlighter-rouge">slice</code> object interpreted when passed as a learning rate to fastai?</p>
+
+    <p>It acts like <code class="language-plaintext highlighter-rouge">numpy.linspace</code> where the <code class="language-plaintext highlighter-rouge">num</code> is implicitly defined as the number of layers.</p>
+  </li>
+  <li>
+    <p>Why is early stopping a poor choice when using 1cycle training?</p>
+
+    <p>For a description of 1cycle training, the <a href="https://docs.fast.ai/callbacks.one_cycle.html">fastai docs</a> refer to the rate finder paper in the references as well as <a href="https://sgugger.github.io/the-1cycle-policy.html">this blog post</a>. It looks like the basic idea is stopping early does give the training a chance to be finely tuned, because you are likely stopping at a point where the learning rate is still large.</p>
+  </li>
+  <li>
+    <p>What is the difference between <code class="language-plaintext highlighter-rouge">resnet50</code> and <code class="language-plaintext highlighter-rouge">resnet101</code>?</p>
+
+    <p>Both <code class="language-plaintext highlighter-rouge">resnet50</code> and <code class="language-plaintext highlighter-rouge">resnet100</code> are residual networks, and seem to have been introduced in <a href="https://arxiv.org/pdf/1512.03385.pdf">Deep Residual Learning for Image Recognition</a>. The basic idea of deep residual networks seems to be “wire a network that is trying to learn the function $\mathcal{H}(x)$ such that it has to learn $\mathcal{H}(x) - x$ instead.” The intuition being that, for example, it is easier to learn the zero function than it is to learn the identity function. <code class="language-plaintext highlighter-rouge">resnet-50</code> looks like it was obtain from the <code class="language-plaintext highlighter-rouge">resnet-34</code> architecture by replacing certain layer pairs with layer triplets known as bottleneck blocks. <code class="language-plaintext highlighter-rouge">resnet-101</code> (and <code class="language-plaintext highlighter-rouge">resnet-152</code>) are just an expansion of this idea, adding 17 more (or 34 more) of these triplet-layer blocks.</p>
+  </li>
+  <li>
+    <p>What does <code class="language-plaintext highlighter-rouge">to_fp16</code> do?</p>
+
+    <blockquote>
+      <p>The other downside of deeper architectures is that they take quite a bit longer to train. One technique that can speed things up a lot is mixed-precision training. This refers to using less-precise numbers (half-precision floating point, also called fp16) where possible during training. As we are writing these words in early 2020, nearly all current NVIDIA GPUs support a special feature called tensor cores that can dramatically speed up neural network training, by 2-3x. They also require a lot less GPU memory. To enable this feature in fastai, just add to_fp16() after your Learner creation (you also need to import the module).</p>
+    </blockquote>
+  </li>
+</ol>
+
+  </div><a class="u-url" href="/markdown/2020/07/21/fastbook_ch5.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>Blog for music, ML, and cheatsheets.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/spstolar" target="_blank" title="spstolar"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/psistolar" target="_blank" title="psistolar"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
