@@ -2,10 +2,10 @@
   
     
         "post0": {
-            "title": "Cheatsheet",
+            "title": "Common Command and Setup Cheatsheet",
             "content": "Common Command and Setup Cheatsheet . terminal shortcuts . ctrl + P = previous command | ctrl + u = erase line before cursor | . general linux shortcuts . ctrl + alt + t = new terminal window | . setting up Vim . sudo apt install vim | TODO: setting jk | .",
-            "url": "http://simonstolarczyk.com/2022/02/12/cheatsheet.html",
-            "relUrl": "/2022/02/12/cheatsheet.html",
+            "url": "http://simonstolarczyk.com/markdown/2022/02/12/cheatsheet.html",
+            "relUrl": "/markdown/2022/02/12/cheatsheet.html",
             "date": " • Feb 12, 2022"
         }
         
