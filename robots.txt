@@ -1,1 +1,1 @@
-Sitemap: https://spstolar.github.io/psiblog/sitemap.xml
+Sitemap: http://simonstolarczyk.com/sitemap.xml
